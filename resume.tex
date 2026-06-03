@@ -1,0 +1,194 @@
+\documentclass[10pt, letterpaper]{article}
+
+% ── Packages ──────────────────────────────────────────────────────────────────
+\usepackage[top=0.4in, bottom=0.4in, left=0.4in, right=0.4in]{geometry}
+\usepackage{mathptmx}
+\usepackage[expansion=false]{microtype}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{parskip}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{ragged2e}
+
+% ── Colours ───────────────────────────────────────────────────────────────────
+\definecolor{primaryblue}{RGB}{27,58,107}   % professional navy blue
+
+% ── Hyperlink styling ─────────────────────────────────────────────────────────
+\hypersetup{
+  colorlinks=true,
+  urlcolor=primaryblue,
+  linkcolor=black
+}
+
+% ── No page number ─────────────────────────────────────────────────────────────
+\pagestyle{empty}
+
+% ── Section heading style: bold, full-width rule below ────────────────────────
+\titleformat{\section}
+  {\bfseries\Large\color{primaryblue}}
+  {}
+  {0em}
+  {}
+  [\vspace{2pt}\titlerule\vspace{3pt}]
+
+\titlespacing{\section}{0pt}{6pt}{3pt}
+
+% ── Bullet list settings ──────────────────────────────────────────────────────
+\setlist[itemize]{
+  leftmargin=1.4em,
+  itemsep=2pt,
+  parsep=0pt,
+  topsep=3pt,
+  label=\textbullet
+}
+
+% ── Column separator ──────────────────────────────────────────────────────────
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+
+% ── Helper: job entry header ──────────────────────────────────────────────────
+\newcommand{\jobentry}[2]{%
+  \noindent\textbf{#1}\hfill\small #2\par
+}
+
+\newcommand{\company}[1]{%
+  \noindent\textit{#1}\par\vspace{2pt}
+}
+
+\newcommand{\projentry}[1]{%
+  \vspace{4pt}\noindent\textbf{#1}\par\vspace{1pt}
+}
+
+\newcommand{\eduentry}[3]{%
+  \noindent\textbf{#1,} \textit{#2}\hfill\small #3\par\vspace{3pt}
+}
+
+\newcommand{\skillrow}[2]{%
+  \item \textbf{#1:} #2
+}
+
+% ══════════════════════════════════════════════════════════════════════════════
+\begin{document}
+% ══════════════════════════════════════════════════════════════════════════════
+
+% ─────────────────────────────────────────────────────────────────────────────
+%  HEADER
+% ─────────────────────────────────────────────────────────────────────────────
+\begin{center}
+  {\LARGE\bfseries\color{primaryblue} SAHIL JAIN}\\[4pt]
+  \href{https://www.linkedin.com/in/imsahiljain/}{linkedin.com/in/imsahiljain} \textbar{}
+  \href{https://imsahiljain.in}{imsahiljain.in} \textbar{}
+  \href{https://github.com/im-sahiljain}{github.com/im-sahiljain} \textbar{} 
+  \href{mailto:mr.sahiljain14@gmail.com}{mr.sahiljain14@gmail.com} \textbar{} 
+  \href{tel:PHONE_NUMBER_PLACEHOLDER}{PHONE_NUMBER_PLACEHOLDER} \textbar{} 
+  \small\color{primaryblue} India
+\end{center}
+
+\vspace{6pt}
+%\noindent\rule{\textwidth}{0.8pt}
+%\vspace{8pt}
+
+% ─────────────────────────────────────────────────────────────────────────────
+%  PROFESSIONAL SUMMARY
+% ─────────────────────────────────────────────────────────────────────────────
+\section*{PROFESSIONAL SUMMARY}
+\vspace{-2pt}
+
+Frontend-focused Full Stack Developer with hands-on experience building scalable, high-performance React.js and Next.js applications. Skilled in JavaScript (ES6+), Redux state management, component design, and RESTful API development and integration. Experienced in UI/UX design translation, browser-based debugging, performance testing frameworks (Jest), and full software development life cycle including coding standards, source control (Git), testing, and deployment. Strong problem-solving abilities with a track record of delivering production-ready solutions in agile environments.
+
+\vspace{4pt}
+
+% ─────────────────────────────────────────────────────────────────────────────
+%  TECHNICAL SKILLS
+% ─────────────────────────────────────────────────────────────────────────────
+\section*{TECHNICAL SKILLS}
+\vspace{-2pt}
+
+\begin{itemize}[leftmargin=1.4em, itemsep=3pt]
+  \skillrow{React Ecosystem}{React.js, Redux Toolkit, React Hooks (useEffect, useCallback, useMemo)}
+  \skillrow{Languages}{JavaScript (ES6+), TypeScript, HTML5, CSS3, Python}
+  \skillrow{Testing \& Debugging}{Jest, Postman, Swagger, Browser DevTools}
+  \skillrow{Backend / Databases}{Node.js, Express.js, MongoDB, MySQL, PostgreSQL, Axios, Django}
+  \skillrow{UI Libraries}{Tailwind CSS, Ant Design, Material Design, ReCharts}
+  \skillrow{DevOps \& Tools}{Git/GitHub, Docker, Linux, Figma, VS Code, Vercel, NPM}
+  \skillrow{SDLC Practices}{Agile, Code Reviews, Coding Standards, Source Control Management}
+\end{itemize}
+
+\vspace{4pt}
+
+% ─────────────────────────────────────────────────────────────────────────────
+%  WORK EXPERIENCE
+% ─────────────────────────────────────────────────────────────────────────────
+\section*{WORK EXPERIENCE}
+\vspace{-2pt}
+
+\jobentry{Software Development Engineer}{Nov 2024 -- May 2026 \textbar{} Jaipur}
+\company{\href{https://www.xyberiatech.com/}{Xyberia Technologies Private Limited}}
+
+\begin{itemize}
+  \item Architected and delivered a full-stack Next.js + React admin dashboard with JWT based authentication, RBAC, and dual-login systems, supporting 10+ client organizations with plan-based feature access.
+  \item Engineered reusable, responsive React component library with API driven rendering; applied React.memo, useCallback, and useMemo to optimize re-render cycles reducing development effort by 20–25\% and improving UI consistency.
+  \item Implemented Redux Toolkit for centralized state management across multi role workflows, following industry best practices for predictable state transitions and clean component separation.
+  \item Designed scalable backend services using Node.js, Express.js, and MongoDB modeled 10+ collections and optimized queries with aggregation pipelines for multi user, multi role workflows.
+  %\item Built and documented 100+ RESTful APIs using Django (Python) and Swagger, standardizing request/response schemas and HTTP conventions to improve maintainability and cross-team integration.
+  \item Drove frontend performance optimization via code splitting, lazy loading, Webpack bundle analysis, and browser based debugging to identify and resolve bottlenecks, improving Core Web Vitals scores.
+  \item Applied Agile practices and led structured code reviews to enforce coding standards, Git branching strategy, and SDLC best practices; collaborated with cross functional teams to convert requirements into technical designs.
+\end{itemize}
+
+\vspace{6pt}
+
+%\jobentry{Full Stack Developer Intern}{Jun 2024 – Sep 2024 \textbar{} Chandigarh}
+%\company{I-Monk}
+
+%\begin{itemize}
+%  \item Translated Figma designs into pixel-perfect, fully responsive React.js UIs with smooth cross-device compatibility, ensuring exceptional user experience and adherence to design specifications.
+ % \item Built reusable, testable React components tailored to client requirements; integrated RESTful APIs using Axios and React Hooks, delivering 40\% increase in customer satisfaction through improved UI reliability.
+  %\item Utilized Jest and browser-based debugging tools for performance testing and troubleshooting, ensuring robust, production-ready code.
+  %\item Crafted detailed project documentation (Microsoft Docs, PowerPoint) covering design specs and development workflows, ensuring smooth handoff and project clarity.
+%\end{itemize}
+
+%\vspace{4pt}
+
+% ─────────────────────────────────────────────────────────────────────────────
+%  EDUCATION
+% ─────────────────────────────────────────────────────────────────────────────
+\section*{EDUCATION}
+\vspace{-2pt}
+
+\eduentry{M.Sc. in Computer Science}{Savitribai Phule Pune University}{Sep 2021 – Jul 2023 \textbar{} Pune}
+\eduentry{Bachelor of Computer Applications}{Panjab University}{Jul 2018 – Jun 2021 \textbar{} Chandigarh}
+
+\vspace{4pt}
+
+% ─────────────────────────────────────────────────────────────────────────────
+%  PROJECTS
+% ─────────────────────────────────────────────────────────────────────────────
+\section*{PROJECTS}
+\vspace{-2pt}
+
+\projentry{\href{https://orgcontrol.imsahiljain.in}{Org Control} \textbar{} Next.js · React · Redux Toolkit · TanStack Query · Zod}
+\begin{itemize}
+  \item Engineered a hybrid state management architecture by decoupling server side asynchronous data fetching (TanStack Query) from complex client side UI interactions (Redux Toolkit), drastically reducing unnecessary re renders.
+  \item Established end-to-end type safety using TypeScript and Zod schema validation across API routes and forms; built a streaming AI Copilot that dynamically intercepts and contextually filters user queries based on active Redux session states.
+\end{itemize}
+
+
+\projentry{\href{https://feedbackdeskai.imsahiljain.in}{FeedBack Desk AI} \textbar{} Next.js · React · TypeScript · AI Integration}
+
+\begin{itemize}
+  \item Built a full-stack AI-powered customer feedback management platform using Next.js, React.js, TypeScript, and Redux; enabled real-time feedback collection, organization, and analysis across multiple products.
+  \item Implemented AI-driven classification to auto-tag feedback by sentiment, category, and priority — significantly reducing manual triage time and supporting faster data-driven product decisions.
+  \item Applied lazy loading, code splitting, and memoization for optimal performance; designed responsive, accessible UI components ensuring smooth UX across all screen sizes.
+\end{itemize}
+
+% \projentry{\href{https://whichethanol.imsahiljain.in/}{Which Ethanol} \textbar{} React.js · MongoDB · AI Validation}
+% \begin{itemize}
+%   \item Compiled and structured vehicle compatibility data for 30+ manufacturers and 50+ models from verified sources; stored in MongoDB with aggregation queries for fast compatibility lookups.
+%   \item Built a clean, responsive React.js frontend for user-friendly browsing; applied AI-assisted validation to cross-check ethanol compatibility and improve dataset consistency.
+% \end{itemize}
+
+\end{document}
