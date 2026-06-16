@@ -38,7 +38,6 @@
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', 'G-3CHZ3NZZP9', {
-            // Enable enhanced measurement for better tracking
             enhanced_measurement_click_events: true,
             enhanced_measurement_outbound_link: true,
             enhanced_measurement_page_views: true,
@@ -46,10 +45,68 @@
         });
     </script>
     
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
-        *{
-            border:0;
-            margin:0;
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+        body, html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #0b0f19;
+            display: flex;
+            flex-direction: column;
+        }
+        iframe {
+            flex-grow: 1;
+            width: 100%;
+            height: 0;
+            display: block;
+        }
+        
+        /* Fixed Footer Download Button Styles */
+        .download-container {
+            height: 68px;
+            width: 100%;
+            background-color: #0b0f19;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            flex-shrink: 0;
+        }
+        .download-btn {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: #ffffff;
+            background-color: #1b3a6b; /* Professional navy blue matching resume.tex color */
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 10px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+        .download-btn:hover {
+            background-color: #142a4f;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45);
+        }
+        .download-btn:active {
+            transform: translateY(0);
         }
     </style>
 
@@ -61,14 +118,12 @@
         
         // Track custom events for resume interactions
         function trackResumeView() {
-            // Track page view with source information
             const urlParams = new URLSearchParams(window.location.search);
             const source = urlParams.get('source') || 'direct';
             const medium = urlParams.get('medium') || 'web';
             const campaign = urlParams.get('campaign') || 'default';
             const customId = urlParams.get('id') || null;
             
-            // Send custom event to Google Analytics
             gtag('event', 'resume_view', {
                 'source': source,
                 'medium': medium,
@@ -78,47 +133,35 @@
                 'page_location': window.location.href
             });
             
-            // Track PDF load event
             gtag('event', 'pdf_load', {
                 'file_name': 'resume.pdf',
                 'source': source,
                 'custom_user_id': customId
             });
+        }
+        
+        function trackDownload() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const source = urlParams.get('source') || 'direct';
             
-            console.log('Resume view tracked:', {source, medium, campaign, customId});
+            gtag('event', 'resume_download', {
+                'file_name': 'resume.pdf',
+                'source': source
+            });
         }
         
         // Track when user spends time on page
         function trackEngagement() {
             let startTime = Date.now();
             
-            // Track time spent after 10 seconds
             setTimeout(() => {
-                gtag('event', 'engagement_10s', {
-                    'time_on_page': '10_seconds'
-                });
+                gtag('event', 'engagement_10s', { 'time_on_page': '10_seconds' });
             }, 10000);
             
-            // Track time spent after 30 seconds
             setTimeout(() => {
-                gtag('event', 'engagement_30s', {
-                    'time_on_page': '30_seconds'
-                });
+                gtag('event', 'engagement_30s', { 'time_on_page': '30_seconds' });
             }, 30000);
-
-            setTimeout(() => {
-                gtag('event', 'engagement_60s', {
-                    'time_on_page': '60_seconds'
-                });
-            }, 60000);
-
-            setTimeout(() => {
-                gtag('event', 'engagement_120s', {
-                    'time_on_page': '120_seconds'
-                });
-            }, 120000);
             
-            // Track when user leaves page
             window.addEventListener('beforeunload', () => {
                 const timeSpent = Math.round((Date.now() - startTime) / 1000);
                 gtag('event', 'session_duration', {
@@ -126,17 +169,33 @@
                 });
             });
         }
-        
-        // Initialize tracking when page loads
+
+        // Initialize when page loads
         document.addEventListener('DOMContentLoaded', function() {
             trackResumeView();
             trackEngagement();
+            
+            const pdfUrl = getUrlPath();
+            // Set source for both the iframe and the download button
+            document.getElementById('resume-iframe').src = pdfUrl;
+            document.getElementById('download-link').href = pdfUrl;
         });
     </script>
 </head>
 <body>
-    <div style="height: 100vh;">
-        <iframe src="" width="100%" height="100%" id="resume" onload="this.onload=null; this.src=getUrlPath();">
+    <!-- Fullscreen PDF Viewer -->
+    <iframe id="resume-iframe" src="" width="100%" height="100%"></iframe>
+
+    <!-- Floating Download Button -->
+    <div class="download-container">
+        <a id="download-link" href="" download="Sahil_Jain_Resume.pdf" class="download-btn" onclick="trackDownload();">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            Download Resume
+        </a>
     </div>
 </body>
 </html>
